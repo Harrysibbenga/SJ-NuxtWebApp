@@ -1,0 +1,48 @@
+@import url("https://use.typekit.net/qjp6avj.css");
+
+html,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: interstate, sans-serif !important;
+  font-style: normal;
+}
+
+.text-h1,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5,
+.text-h6 {
+  font-family: interstate,
+    sans-serif !important;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* // colors */
+.primary-grad {
+  background: rgb(10, 27, 83);
+  background: linear-gradient(90deg, rgba(10, 27, 83, 1) 10%, rgba(4, 41, 149, 1) 50%, rgba(10, 27, 83, 1) 90%);
+}
+
+/* // transitions */
+.fade-enter-active {
+  transition: opacity .5s;
+}
+
+.fade-leave-active {
+  transition: opacity .1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

@@ -11,7 +11,7 @@
       <v-card class="transparent">
         <v-img :src="post.url" :alt="post.alt">
           <v-row class="d-none d-md-block">
-            <v-col md="8" lg="4" class="pa-10">
+            <v-col md="8" lg="6" xl="3" class="pa-10">
               <v-card-text>
                 <h1 class="text-h3 secondary primary--text font-weight-medium">
                   {{ post.title }}
