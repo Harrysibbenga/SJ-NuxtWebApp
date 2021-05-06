@@ -1,0 +1,105 @@
+<template>
+  <div>
+    <mdb-btn @click.native="select">Select</mdb-btn>
+
+    <mdb-modal
+      class="text-dark"
+      top
+      position="top"
+      full-height
+      direction="top"
+      :show="selectModel"
+      size="fluid"
+      @close="selectModel = false"
+    >
+      <mdb-modal-header>
+        <mdb-modal-title>Select an image</mdb-modal-title>
+      </mdb-modal-header>
+      <mdb-modal-body>
+        <div class="container-fluid">
+          <div class="row">
+            <div
+              v-for="(img, index) in paginatedData"
+              :key="index"
+              class="col-3 p-0"
+            >
+              <div
+                class="custom-control custom-radio custom-control text-center"
+              >
+                <img :src="img.url" :alt="img.alt" class="img-fluid" />
+                <input
+                  :id="img.id"
+                  v-model="selected"
+                  name="images"
+                  type="radio"
+                  class="custom-control-input"
+                  :value="{ imgData: img }"
+                />
+                <label class="custom-control-label" :for="img.id">
+                  {{ img.alt }}
+                </label>
+              </div>
+            </div>
+            <mdb-col class="col-12 text-center">
+              <mdb-btn
+                :class="{ 'd-none': pageNumber == 0 }"
+                color="primary"
+                @click.native="prevPage"
+              >
+                <mdb-icon icon="angle-double-left" />
+              </mdb-btn>
+              {{ pageNumber + 1 }} of {{ pageCount }}
+              <mdb-btn
+                :class="{ 'd-none': pageNumber >= pageCount - 1 }"
+                color="primary"
+                @click.native="nextPage"
+              >
+                <mdb-icon icon="angle-double-right" />
+              </mdb-btn>
+            </mdb-col>
+          </div>
+        </div>
+      </mdb-modal-body>
+      <v-card-actions>
+        <v-btn color="secondary" @click.native="selectModel = false"
+          >Close</v-btn
+        >
+        <v-btn color="primary" @click.native="saveSelection">Confirm</v-btn>
+      </v-card-actions>
+    </mdb-modal>
+  </div>
+</template>
+
+<script>
+import { pagination } from '@/mixins/pagination'
+export default {
+  mixins: [pagination],
+  props: {
+    image: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  data() {
+    return {
+      selected: '',
+      selectModel: false,
+      imgData: {},
+    }
+  },
+  computed: {
+    items() {
+      return this.$store.getters['images/images']
+    },
+  },
+  methods: {
+    select() {
+      this.selectModel = true
+    },
+    saveSelection() {
+      this.$emit('update:image', this.selected.imgData)
+      this.selectModel = false
+    },
+  },
+}
+</script>

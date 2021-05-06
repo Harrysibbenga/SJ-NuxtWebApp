@@ -1,0 +1,102 @@
+<template>
+  <v-card
+    class="mx-auto position-relative"
+    max-width="600"
+    min-height="400"
+    :nuxt="true"
+    :to="{ name: 'post-slug', params: { slug: post.slug } }"
+  >
+    <v-img
+      class="secondary--text align-end"
+      height="400px"
+      :src="post.url"
+      :alt="post.alt"
+    >
+    </v-img>
+
+    <v-col
+      cols="4"
+      class="secondary primary--text text-center position-absolute date-col"
+    >
+      <h3 class="text-uppercase text-h4 text-lg-h3 font-weight-black">
+        {{ dates.month }}
+      </h3>
+      <p class="text-h5 font-weight-medium">{{ dates.day }}</p>
+    </v-col>
+
+    <v-card-text
+      class="primary--text text-center secondary"
+      style="min-height: 400px"
+    >
+      <h4 class="text-h5 primary--text pa-10">{{ excerpt }}</h4>
+      <v-row align="center" class="my-auto">
+        <v-col cols="12">
+          <v-btn
+            color="primary"
+            class="secondary--text"
+            x-large
+            :nuxt="true"
+            :to="{ name: 'post-slug', params: { slug: post.slug } }"
+            >Click for more</v-btn
+          >
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
+</template>
+
+<script>
+import moment from 'moment'
+import { truncate } from '@/mixins/truncate'
+
+export default {
+  mixins: [truncate],
+  props: {
+    post: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  computed: {
+    dates() {
+      const date = this.post.date
+
+      const day = []
+      const month = []
+
+      day.push(moment(date.split('-')).format('Do'))
+      month.push(moment(date.split('-')[1], 'MM').format('MMM'))
+
+      const dateObject = {
+        month: month[0],
+        day: day[0],
+      }
+
+      return dateObject
+    },
+    excerpt() {
+      return this.truncateString(this.post.excerpt, 180)
+    },
+  },
+}
+</script>
+
+<style lang="scss">
+.position-absolute {
+  position: absolute;
+}
+
+.date-col {
+  top: 0;
+  right: 0;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.date-row {
+  width: 100;
+  height: 100;
+}
+</style>

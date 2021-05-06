@@ -1,0 +1,118 @@
+<template>
+  <div>
+    <v-container fluid>
+      <v-row>
+        <v-col col="12" class="p-0 text-center text--white">
+          <img :src="post.url" :alt="post.alt" class="img-fluid" />
+        </v-col>
+      </v-row>
+      <v-row class="pl-5">
+        <v-col col="12 pt-2">
+          <span class="date">{{ post.date | formatDate }}</span>
+          <div class="py-5" v-html="post.content"></div>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <v-container>
+      <v-row>
+        <v-col
+          v-for="(content, index) in post.quotes"
+          :key="index"
+          cols="12"
+          class="secondary--text"
+        >
+          <h2>{{ content.name }}</h2>
+          <div class="py-5" v-html="content.content"></div>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <v-container fluid>
+      <v-row class="m-0">
+        <v-col col="12">
+          <Hooper
+            :items-to-show="3"
+            :infinite-scroll="true"
+            :wheel-control="false"
+            style="height: auto"
+          >
+            <Slide
+              v-for="(img, index) in post.gallery"
+              :key="index"
+              :index="index"
+              class="align-content-center"
+            >
+              <img :src="img.url" :alt="img.alt" class="img-fluid" />
+            </Slide>
+            <Navigation slot="hooper-addons"></Navigation>
+          </Hooper>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
+</template>
+
+<script>
+import { Hooper, Slide, Navigation } from 'hooper'
+import { filter } from '@/mixins/filter'
+
+export default {
+  name: 'Post',
+  components: {
+    Hooper,
+    Slide,
+    Navigation,
+  },
+  mixins: [filter],
+  data() {
+    return {
+      slug: '',
+      post: {},
+    }
+  },
+  head() {
+    return {
+      title: this.post.title,
+      meta: [
+        {
+          property: 'og:title',
+          content: this.post.title,
+        },
+        {
+          property: 'og:description',
+          content: this.post.excerpt,
+        },
+        {
+          property: 'og:url',
+          content: 'https://stephenjelley.com/' + this.slug,
+        },
+        {
+          property: 'og:image',
+          content: this.post.url,
+        },
+        {
+          property: 'og:site_name',
+          content: 'Stephen Jelley | Official Website',
+        },
+        { property: 'og:type', content: 'post' },
+        { name: 'robots', content: 'index,follow' },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.post.excerpt,
+        },
+      ],
+    }
+  },
+  created() {
+    const slug = this.$route.params.slug
+    this.$store.dispatch('posts/setPostSlug', slug).then((data) => {
+      this.post = data
+    })
+  },
+  destroyed() {
+    this.$store.commit('posts/clearPost')
+  },
+}
+</script>
