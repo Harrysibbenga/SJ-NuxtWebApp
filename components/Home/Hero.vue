@@ -4,50 +4,48 @@
     cycle
     hide-delimiters
     show-arrows-on-hover
-    height="auto"
-    class="position-relative"
+    height="fit-content"
+    class="position-relative height"
   >
     <v-carousel-item v-for="(post, i) in posts" :key="i">
-      <v-card class="transparent">
+      <v-card class="secondary">
         <v-img :src="post.url" :alt="post.alt">
           <v-row class="d-none d-md-block">
             <v-col md="8" lg="4" class="pa-10">
-              <v-card-text>
-                <h1 class="text-h3 secondary primary--text font-weight-medium">
-                  {{ post.title }}
-                </h1>
-              </v-card-text>
-              <v-card-subtitle>
-                <v-btn
-                  :nuxt="true"
-                  :to="{ name: 'post-slug', params: { slug: post.slug } }"
-                  class="secondary primary--text font-weight-medium"
-                  small
-                >
-                  Click for more
-                </v-btn>
-              </v-card-subtitle>
+              <h1 class="text-h3 secondary primary--text font-weight-medium">
+                {{ post.title }}
+              </h1>
+              <v-btn
+                :nuxt="true"
+                :to="{ name: 'post-slug', params: { slug: post.slug } }"
+                class="secondary primary--text font-weight-medium mt-9"
+                small
+              >
+                Click for more
+              </v-btn>
             </v-col>
           </v-row>
         </v-img>
-        <v-card-text class="d-md-none">
-          <h1 class="text-h6 secondary primary--text font-weight-medium">
+        <v-card-text style="min-height: 200px" class="d-md-none text-center">
+          <h1
+            class="text-h5 text-sm-h4 secondary primary--text font-weight-medium"
+          >
             {{ post.title }}
           </h1>
-        </v-card-text>
-        <v-card-subtitle class="d-md-none">
           <v-btn
             :nuxt="true"
             :to="{ name: 'post-slug', params: { slug: post.slug } }"
-            class="secondary primary--text font-weight-medium"
+            class="secondary primary--text font-weight-medium mt-6"
             small
           >
             Click for more
           </v-btn>
-        </v-card-subtitle>
+        </v-card-text>
       </v-card>
     </v-carousel-item>
-    <v-row class="position-absolute hero-nav align-content-md-end mb-md-10">
+    <v-row
+      class="position-absolute hero-nav d-none d-md-flex align-content-md-end mb-md-10"
+    >
       <v-col class="ml-16">
         <v-btn
           :nuxt="true"
@@ -82,6 +80,7 @@
 
 <script>
 import { truncate } from '@/mixins/truncate'
+import _ from 'lodash'
 
 export default {
   mixins: [truncate],
@@ -94,7 +93,9 @@ export default {
   },
   computed: {
     posts() {
-      return this.$store.getters['posts/getPosts']
+      const posts = _.cloneDeep(this.$store.getters['posts/getPosts'])
+
+      return posts.splice(0, 3)
     },
   },
   methods: {
@@ -109,8 +110,13 @@ export default {
 .hero-nav {
   bottom: 0;
   left: 0;
-  z-index: 1;
   width: 100%;
-  height: 100%;
+}
+.height {
+  min-height: 500;
+}
+
+.z-index {
+  z-index: 10;
 }
 </style>

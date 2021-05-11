@@ -29,10 +29,10 @@
       lg="3"
       class="secondary primary--text text-center position-absolute date-col"
     >
-      <h3 class="text-uppercase text-h3 font-weight-black">
+      <h3 class="text-uppercase text-h3 font-weight-bold">
         {{ dates.month }}
       </h3>
-      <p class="text-h5 font-weight-medium">{{ dates.days }}</p>
+      <p class="text-h6 font-weight-medium">{{ dates.days }}</p>
     </v-col>
 
     <transition name="fade">
@@ -41,9 +41,9 @@
         class="primary--text text-center secondary"
         style="min-height: 500px"
       >
-        <h4 class="text-h4">Rounds: {{ fixture.rounds }}</h4>
-        <h4 class="text-h4">Length: {{ fixture.track.length }} mi</h4>
-        <h4 class="pb-4 text-h4">Laps: {{ fixture.laps }}</h4>
+        <h4 class="text-h5">Rounds: {{ fixture.rounds }}</h4>
+        <h4 class="text-h5">Length: {{ fixture.track.length }} mi</h4>
+        <h4 class="pb-4 text-h5">Laps: {{ fixture.laps }}</h4>
         <v-row align="center" class="my-auto" height="auto">
           <v-col cols="12">
             <v-img

@@ -9,13 +9,15 @@
           v-for="(partner, index) in partners"
           :key="index"
           :index="index"
-          class="mt-16 ma-auto"
+          class="ma-auto"
         >
           <nuxt-link to="/partners">
             <v-img
               :src="partner.url"
               :alt="partner.alt"
-              class="img ma-auto"
+              class="ma-auto"
+              :max-height="300"
+              :max-width="300"
             ></v-img>
           </nuxt-link>
         </slide>
@@ -32,7 +34,7 @@
           <v-img
             :src="partner.url"
             :alt="partner.alt"
-            class="img mx-auto"
+            class="mx-auto img"
           ></v-img>
         </a>
       </v-col>

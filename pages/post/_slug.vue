@@ -3,18 +3,27 @@
     <v-container fluid>
       <v-row>
         <v-col col="12" class="p-0 text-center">
-          <v-card>
+          <v-card class="secondary">
             <v-img :src="post.url" :alt="post.alt">
-              <v-row>
-                <v-col cols="6" lg="4" xl="3" class="pa-10">
+              <v-row class="d-none d-md-block">
+                <v-col cols="8" lg="4" class="pa-10">
                   <v-card-text>
-                    <h1 class="text-h3 secondary primary--text">
+                    <h1
+                      class="text-h3 secondary primary--text font-weight-medium"
+                    >
                       {{ post.title }}
                     </h1>
                   </v-card-text>
                 </v-col>
               </v-row>
             </v-img>
+            <v-card-text class="d-md-none">
+              <h1
+                class="text-h5 text-sm-h4 secondary primary--text font-weight-medium"
+              >
+                {{ post.title }}
+              </h1>
+            </v-card-text>
           </v-card>
         </v-col>
       </v-row>

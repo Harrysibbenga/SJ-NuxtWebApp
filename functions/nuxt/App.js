@@ -5,7 +5,7 @@ import { getMatchedComponentsInstances, getChildrenComponentInstancesUsingFetch,
 import NuxtError from './components/nuxt-error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
-import '../assets/variables.scss'
+import '../assets/main.css'
 
 import '../node_modules/hooper/dist/hooper.css'
 

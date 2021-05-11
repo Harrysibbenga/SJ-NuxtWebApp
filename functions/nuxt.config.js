@@ -2,7 +2,7 @@
 module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s | Offical Website',
+    titleTemplate: '%s | Official Website',
     title: 'Stephen Jelley',
     htmlAttrs: {
       lang: 'en',
@@ -34,7 +34,7 @@ module.exports = {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/variables.scss', 'hooper/dist/hooper.css'],
+  css: ['~/assets/main.css', 'hooper/dist/hooper.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [{ src: '~/plugins/vue-easy-lightbox.js', mode: 'client' }],
@@ -98,7 +98,8 @@ module.exports = {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    treeshake: false,
+    treeShake: true,
+    customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: false,
       themes: {
