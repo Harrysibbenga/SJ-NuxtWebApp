@@ -2,4 +2,4 @@
 
 Stephen Jelley web app build with Nuxt and Firebase (SSR)
 
-Live: https://stphenjelley.co.uk
+Live: https://stephenjelley.co.uk
