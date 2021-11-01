@@ -19,12 +19,7 @@
             </v-img>
             <v-card-text class="d-md-none">
               <h1
-                class="
-                  text-h5 text-sm-h4
-                  secondary
-                  primary--text
-                  font-weight-medium
-                "
+                class="text-h5 text-sm-h4 secondary primary--text font-weight-medium"
               >
                 {{ post.title }}
               </h1>

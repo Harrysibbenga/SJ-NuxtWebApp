@@ -42,6 +42,8 @@ module.exports = {
     ],
   },
 
+  ssr: true,
+
   vue: {
     config: {
       performance: true, // you probably should detect dev mode here
@@ -126,22 +128,6 @@ module.exports = {
           accent: '#9c27b0',
         },
       },
-    },
-  },
-
-  firebase: {
-    config: {
-      apiKey: 'AIzaSyAhZJcxwQ_3bwIvJC5jlhwcf-NdLsgh_aI',
-      authDomain: 'stephen-jelly.firebaseapp.com',
-      databaseURL: 'https://stephen-jelly.firebaseio.com',
-      projectId: 'stephen-jelly',
-      storageBucket: 'stephen-jelly.appspot.com',
-      messagingSenderId: '51119085046',
-      appId: '1:51119085046:web:883659cc5cb660fedce3d7',
-      measurementId: 'G-7NV6HKP26M',
-    },
-    services: {
-      analytics: true,
     },
   },
 
