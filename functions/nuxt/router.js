@@ -4,21 +4,21 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _31991867 = () => interopDefault(import('../pages/admin.vue' /* webpackChunkName: "pages/admin" */))
-const _665514ac = () => interopDefault(import('../pages/admin/index.vue' /* webpackChunkName: "pages/admin/index" */))
-const _a5c4ca36 = () => interopDefault(import('../pages/admin/about.vue' /* webpackChunkName: "pages/admin/about" */))
-const _d28c78d4 = () => interopDefault(import('../pages/admin/calendar.vue' /* webpackChunkName: "pages/admin/calendar" */))
-const _6e704bac = () => interopDefault(import('../pages/admin/car.vue' /* webpackChunkName: "pages/admin/car" */))
-const _93da3eaa = () => interopDefault(import('../pages/admin/news.vue' /* webpackChunkName: "pages/admin/news" */))
-const _931df2fa = () => interopDefault(import('../pages/admin/partners.vue' /* webpackChunkName: "pages/admin/partners" */))
-const _4e5a674e = () => interopDefault(import('../pages/admin/shop.vue' /* webpackChunkName: "pages/admin/shop" */))
-const _b7ed6b28 = () => interopDefault(import('../pages/car.vue' /* webpackChunkName: "pages/car" */))
-const _6c5d30fe = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
-const _3399b9eb = () => interopDefault(import('../pages/news.vue' /* webpackChunkName: "pages/news" */))
-const _132d807a = () => interopDefault(import('../pages/partners.vue' /* webpackChunkName: "pages/partners" */))
-const _d37b3c7e = () => interopDefault(import('../pages/profile.vue' /* webpackChunkName: "pages/profile" */))
-const _2bdd971a = () => interopDefault(import('../pages/post/_slug.vue' /* webpackChunkName: "pages/post/_slug" */))
-const _0029c46a = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _e7d43e58 = () => interopDefault(import('../pages/admin.vue' /* webpackChunkName: "pages/admin" */))
+const _82b90f52 = () => interopDefault(import('../pages/admin/index.vue' /* webpackChunkName: "pages/admin/index" */))
+const _c228c4dc = () => interopDefault(import('../pages/admin/about.vue' /* webpackChunkName: "pages/admin/about" */))
+const _a939b46e = () => interopDefault(import('../pages/admin/calendar.vue' /* webpackChunkName: "pages/admin/calendar" */))
+const _33491599 = () => interopDefault(import('../pages/admin/car.vue' /* webpackChunkName: "pages/admin/car" */))
+const _e7595744 = () => interopDefault(import('../pages/admin/news.vue' /* webpackChunkName: "pages/admin/news" */))
+const _69cb2e94 = () => interopDefault(import('../pages/admin/partners.vue' /* webpackChunkName: "pages/admin/partners" */))
+const _249adb01 = () => interopDefault(import('../pages/admin/shop.vue' /* webpackChunkName: "pages/admin/shop" */))
+const _f3f16bce = () => interopDefault(import('../pages/car.vue' /* webpackChunkName: "pages/car" */))
+const _244e2fee = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
+const _dd48a044 = () => interopDefault(import('../pages/news.vue' /* webpackChunkName: "pages/news" */))
+const _15890436 = () => interopDefault(import('../pages/partners.vue' /* webpackChunkName: "pages/partners" */))
+const _44aec2ee = () => interopDefault(import('../pages/profile.vue' /* webpackChunkName: "pages/profile" */))
+const _7f5cafb4 = () => interopDefault(import('../pages/post/_slug.vue' /* webpackChunkName: "pages/post/_slug" */))
+const _5aa68cd7 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
 
@@ -33,63 +33,63 @@ export const routerOptions = {
 
   routes: [{
     path: "/admin",
-    component: _31991867,
+    component: _e7d43e58,
     children: [{
       path: "",
-      component: _665514ac,
+      component: _82b90f52,
       name: "admin"
     }, {
       path: "about",
-      component: _a5c4ca36,
+      component: _c228c4dc,
       name: "admin-about"
     }, {
       path: "calendar",
-      component: _d28c78d4,
+      component: _a939b46e,
       name: "admin-calendar"
     }, {
       path: "car",
-      component: _6e704bac,
+      component: _33491599,
       name: "admin-car"
     }, {
       path: "news",
-      component: _93da3eaa,
+      component: _e7595744,
       name: "admin-news"
     }, {
       path: "partners",
-      component: _931df2fa,
+      component: _69cb2e94,
       name: "admin-partners"
     }, {
       path: "shop",
-      component: _4e5a674e,
+      component: _249adb01,
       name: "admin-shop"
     }]
   }, {
     path: "/car",
-    component: _b7ed6b28,
+    component: _f3f16bce,
     name: "car"
   }, {
     path: "/login",
-    component: _6c5d30fe,
+    component: _244e2fee,
     name: "login"
   }, {
     path: "/news",
-    component: _3399b9eb,
+    component: _dd48a044,
     name: "news"
   }, {
     path: "/partners",
-    component: _132d807a,
+    component: _15890436,
     name: "partners"
   }, {
     path: "/profile",
-    component: _d37b3c7e,
+    component: _44aec2ee,
     name: "profile"
   }, {
     path: "/post/:slug?",
-    component: _2bdd971a,
+    component: _7f5cafb4,
     name: "post-slug"
   }, {
     path: "/",
-    component: _0029c46a,
+    component: _5aa68cd7,
     name: "index"
   }],
 

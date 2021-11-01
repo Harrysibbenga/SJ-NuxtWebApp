@@ -4,9 +4,14 @@
       <v-row>
         <v-col col="12" class="p-0 text-center">
           <v-card>
-            <v-img :src="page.url" :alt="page.alt" class="img-fluid">
+            <v-img
+              :src="page.url"
+              :alt="page.alt"
+              class="img-fluid"
+              :min-height="500"
+            >
               <v-card-title
-                class="text-h5 pa-lg-10 secondary text-lg-h3 ma-10"
+                class="text-h6 pa-lg-10 secondary text-lg-h3 ma-5"
                 style="width: fit-content"
               >
                 <h1 class="primary--text font-weight-bold text-uppercase">

@@ -29,7 +29,7 @@
       lg="3"
       class="secondary primary--text text-center position-absolute date-col"
     >
-      <h3 class="text-uppercase text-h3 font-weight-bold">
+      <h3 class="text-uppercase text-h4 text-sm-h3 font-weight-bold">
         {{ dates.month }}
       </h3>
       <p class="text-h6 font-weight-medium">{{ dates.days }}</p>

@@ -19,7 +19,12 @@
             </v-img>
             <v-card-text class="d-md-none">
               <h1
-                class="text-h5 text-sm-h4 secondary primary--text font-weight-medium"
+                class="
+                  text-h5 text-sm-h4
+                  secondary
+                  primary--text
+                  font-weight-medium
+                "
               >
                 {{ post.title }}
               </h1>
@@ -27,10 +32,10 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row class="pl-5">
+      <v-row class="px-5">
         <v-col col="12" class="pt-2 white--text">
           <h2 class="date">{{ post.date | fullDate }}</h2>
-          <div class="py-5" v-html="post.content"></div>
+          <div class="py-5 text-justify" v-html="post.content"></div>
         </v-col>
       </v-row>
     </v-container>
@@ -58,7 +63,7 @@
     </v-container>
 
     <v-container>
-      <v-row>
+      <v-row class="px-5">
         <v-col
           v-for="(content, index) in post.quotes"
           :key="index"
@@ -66,7 +71,7 @@
           class="secondary--text"
         >
           <h2>{{ content.name }}</h2>
-          <div class="py-5" v-html="content.content"></div>
+          <div class="py-5 text-justify" v-html="content.content"></div>
         </v-col>
       </v-row>
     </v-container>
@@ -88,43 +93,62 @@ export default {
       images: [],
     }
   },
+  async fetch({ store, route }) {
+    this.slug = route.params.slug
+    await store.dispatch('posts/setPostSlug', this.slug)
+  },
   head() {
+    const post = this.store.getters['posts/getPost']
     return {
-      title: this.post.title,
+      title: post.title,
       meta: [
         {
+          hid: 't-type',
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          hid: 't-type',
+          name: 'twitter:site',
+          content: '@parkerclassicworks',
+        },
+        {
+          hid: 'og-title',
           property: 'og:title',
-          content: this.post.title,
+          content: post.title,
         },
         {
+          hid: 'og-desc',
           property: 'og:description',
-          content: this.post.excerpt,
+          content: post.excerpt,
         },
         {
+          hid: 'og-url',
           property: 'og:url',
-          content: 'https://stephenjelley.com/' + this.slug,
+          content: 'https://stephenjelley.com/post/' + this.slug,
         },
         {
+          hid: 'og-image',
           property: 'og:image',
-          content: this.post.url,
+          content: post.url,
         },
         {
+          hid: 'og-site_name',
           property: 'og:site_name',
           content: 'Stephen Jelley | Official Website',
         },
-        { property: 'og:type', content: 'post' },
+        { hid: 'og-type', property: 'og:type', content: 'post' },
         { name: 'robots', content: 'index,follow' },
         {
           hid: 'description',
           name: 'description',
-          content: this.post.excerpt,
+          content: post.excerpt,
         },
       ],
     }
   },
   created() {
-    const slug = this.$route.params.slug
-    this.$store.dispatch('posts/setPostSlug', slug).then((data) => {
+    this.$store.dispatch('posts/setPostSlug', this.slug).then((data) => {
       this.post = data
       data.gallery.forEach((img) => {
         this.images.push(img.url)

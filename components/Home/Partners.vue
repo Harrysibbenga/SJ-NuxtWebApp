@@ -39,17 +39,14 @@
         </a>
       </v-col>
     </v-row>
-    <v-container v-if="page" fluid>
-      <v-row
+    <v-container v-if="page">
+      <div
         v-for="(partner, index) in partners"
         :key="index"
         :index="index"
-        class="mx-auto pa-16"
-        cols="6"
-        md="4"
         align="center"
       >
-        <v-col cols="12" md="auto" lg="4" xl="6">
+        <v-col cols="12" md="3" lg="4" xl="6">
           <a :href="partner.link" target="_blank">
             <v-img
               :src="partner.url"
@@ -59,13 +56,13 @@
             ></v-img>
           </a>
         </v-col>
-        <v-col>
+        <v-col cols="12" md="7">
           <div class="white--text" v-html="partner.content"></div>
           <a :href="partner.link" class="white--text" target="_blank"
             >Click here for more</a
           >
         </v-col>
-      </v-row>
+      </div>
     </v-container>
   </v-container>
 </template>

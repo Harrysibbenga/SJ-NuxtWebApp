@@ -95,16 +95,16 @@
   "Error": {
     "description": "Auto imported from components/error.vue"
   },
-  "AdminNews": {
-    "description": "Auto imported from components/Admin/News.vue"
-  },
-  "AdminPartner": {
-    "description": "Auto imported from components/Admin/Partner.vue"
-  },
   "CarBody": {
     "description": "Auto imported from components/Car/Body.vue"
   },
   "CarHead": {
     "description": "Auto imported from components/Car/Head.vue"
+  },
+  "AdminNews": {
+    "description": "Auto imported from components/Admin/News.vue"
+  },
+  "AdminPartner": {
+    "description": "Auto imported from components/Admin/Partner.vue"
   }
 }

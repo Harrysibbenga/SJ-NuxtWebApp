@@ -1,5 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
+.history
+.firebase
 # Logs
 /logs
 *.log
@@ -93,4 +95,3 @@ sw.*
 /services
 
 
-.history

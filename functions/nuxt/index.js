@@ -13,9 +13,10 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_425681de from 'nuxt_plugin_plugin_425681de' // Source: ./components/plugin.js (mode: 'all')
-import nuxt_plugin_plugin_eca58260 from 'nuxt_plugin_plugin_eca58260' // Source: ./vuetify/plugin.js (mode: 'all')
-import nuxt_plugin_axios_10b609f4 from 'nuxt_plugin_axios_10b609f4' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_plugin_5b9fb95e from 'nuxt_plugin_plugin_5b9fb95e' // Source: ./components/plugin.js (mode: 'all')
+import nuxt_plugin_plugin_40054a3d from 'nuxt_plugin_plugin_40054a3d' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_index_00292b87 from 'nuxt_plugin_index_00292b87' // Source: ./firebase/index.js (mode: 'all')
+import nuxt_plugin_axios_6e77ffe7 from 'nuxt_plugin_axios_6e77ffe7' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_vueeasylightbox_38d21d18 from 'nuxt_plugin_vueeasylightbox_38d21d18' // Source: ../plugins/vue-easy-lightbox.js (mode: 'client')
 
 // Component: <ClientOnly>
@@ -84,7 +85,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"titleTemplate":"%s | Official Website","title":"Stephen Jelley","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Stephen Jelley is a professional racing driver competing in the British Touring Car Championship in a BMW 330i M Sport with West Surrey Racing. He is a BTCC race winner and has an impressive CV, having previously competed in British F3, GP2 Series, and the Porsche Carrera Cup GB."}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"script":[{"src":"https:\u002F\u002Fapps.elfsight.com\u002Fp\u002Fplatform.js","defer":true,"body":true}],"style":[]},
+    head: {"titleTemplate":"%s | Official Website","title":"Stephen Jelley","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Stephen Jelley is a professional racing driver competing in the British Touring Car Championship in a BMW 330i M Sport with West Surrey Racing. He is a BTCC race winner and has an impressive CV, having previously competed in British F3, GP2 Series, and the Porsche Carrera Cup GB."}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"script":[{"src":"https:\u002F\u002Fapps.elfsight.com\u002Fp\u002Fplatform.js","defer":true,"body":true},{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=G-HN60P3N6ST","async":true},{"hid":"gtag","type":"text\u002Fjavascript","charset":"utf-8","innerHTML":"\n        window.dataLayer = window.dataLayer || [];\n        function gtag(){dataLayer.push(arguments);}\n        gtag('js', new Date());\n        gtag('config', 'G-HN60P3N6ST')\n        "}],"style":[]},
 
     store,
     router,
@@ -213,16 +214,20 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_425681de === 'function') {
-    await nuxt_plugin_plugin_425681de(app.context, inject)
+  if (typeof nuxt_plugin_plugin_5b9fb95e === 'function') {
+    await nuxt_plugin_plugin_5b9fb95e(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_plugin_eca58260 === 'function') {
-    await nuxt_plugin_plugin_eca58260(app.context, inject)
+  if (typeof nuxt_plugin_plugin_40054a3d === 'function') {
+    await nuxt_plugin_plugin_40054a3d(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_10b609f4 === 'function') {
-    await nuxt_plugin_axios_10b609f4(app.context, inject)
+  if (typeof nuxt_plugin_index_00292b87 === 'function') {
+    await nuxt_plugin_index_00292b87(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_axios_6e77ffe7 === 'function') {
+    await nuxt_plugin_axios_6e77ffe7(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_vueeasylightbox_38d21d18 === 'function') {
@@ -238,7 +243,14 @@ async function createApp(ssrContext, config = {}) {
 
   // Wait for async component to be resolved first
   await new Promise((resolve, reject) => {
-    router.push(app.context.route.fullPath, resolve, (err) => {
+    // Ignore 404s rather than blindly replacing URL in browser
+    if (process.client) {
+      const { route } = router.resolve(app.context.route.fullPath)
+      if (!route.matched.length) {
+        return resolve()
+      }
+    }
+    router.replace(app.context.route.fullPath, resolve, (err) => {
       // https://github.com/vuejs/vue-router/blob/v3.4.3/src/util/errors.js
       if (!err._isRouter) return reject(err)
       if (err.type !== 2 /* NavigationFailureType.redirected */) return resolve()

@@ -24,6 +24,21 @@ module.exports = {
         defer: true,
         body: true,
       },
+      {
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-HN60P3N6ST',
+        async: true,
+      },
+      {
+        hid: 'gtag',
+        type: 'text/javascript',
+        charset: 'utf-8',
+        innerHTML: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-HN60P3N6ST')
+        `,
+      },
     ],
   },
 
@@ -92,6 +107,8 @@ module.exports = {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+
+    '@nuxtjs/firebase',
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
@@ -109,6 +126,22 @@ module.exports = {
           accent: '#9c27b0',
         },
       },
+    },
+  },
+
+  firebase: {
+    config: {
+      apiKey: 'AIzaSyAhZJcxwQ_3bwIvJC5jlhwcf-NdLsgh_aI',
+      authDomain: 'stephen-jelly.firebaseapp.com',
+      databaseURL: 'https://stephen-jelly.firebaseio.com',
+      projectId: 'stephen-jelly',
+      storageBucket: 'stephen-jelly.appspot.com',
+      messagingSenderId: '51119085046',
+      appId: '1:51119085046:web:883659cc5cb660fedce3d7',
+      measurementId: 'G-7NV6HKP26M',
+    },
+    services: {
+      analytics: true,
     },
   },
 
