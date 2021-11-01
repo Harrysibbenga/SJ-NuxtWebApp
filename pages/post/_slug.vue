@@ -19,7 +19,12 @@
             </v-img>
             <v-card-text class="d-md-none">
               <h1
-                class="text-h5 text-sm-h4 secondary primary--text font-weight-medium"
+                class="
+                  text-h5 text-sm-h4
+                  secondary
+                  primary--text
+                  font-weight-medium
+                "
               >
                 {{ post.title }}
               </h1>
@@ -90,10 +95,12 @@ export default {
   },
   async fetch({ store, route }) {
     this.slug = route.params.slug
-    await store.dispatch('posts/setPostSlug', this.slug)
+    await store.dispatch('posts/setPostSlug', this.slug).then((data) => {
+      this.post = data
+    })
   },
   head() {
-    const post = this.store.getters['posts/getPost']
+    const post = this.$store.getters['posts/getPost']
     return {
       title: post.title,
       meta: [
@@ -143,6 +150,7 @@ export default {
     }
   },
   created() {
+    this.slug = this.$route.params.slug
     this.$store.dispatch('posts/setPostSlug', this.slug).then((data) => {
       this.post = data
       data.gallery.forEach((img) => {
