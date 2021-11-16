@@ -190,4 +190,39 @@ export const actions = {
       )
     })
   },
+  deleteImage({ commit }, id, type) {
+    let collection
+
+    if (type === 'partner') {
+      collection = partnerImgCol
+    } else if (type === 'circuit') {
+      collection = circuitImgCol
+    } else if (type === 'image') {
+      collection = imgCol
+    }
+
+    collection
+      .doc(id)
+      .delete()
+      .then(() => {
+        const uploadMsg = {
+          type: 'error',
+          message: 'Image deleted',
+        }
+        commit('SET_MSG', uploadMsg)
+        setTimeout(() => {
+          commit('SET_MSG', {})
+        }, 8000)
+      })
+      .catch((err) => {
+        const uploadMsg = {
+          type: 'warning',
+          message: err.message,
+        }
+        commit('SET_MSG', uploadMsg)
+        setTimeout(() => {
+          commit('SET_MSG', {})
+        }, 8000)
+      })
+  },
 }

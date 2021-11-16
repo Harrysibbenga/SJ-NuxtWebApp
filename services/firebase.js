@@ -6,14 +6,14 @@ import 'firebase/analytics'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyAhZJcxwQ_3bwIvJC5jlhwcf-NdLsgh_aI',
-  authDomain: 'stephen-jelly.firebaseapp.com',
-  databaseURL: 'https://stephen-jelly.firebaseio.com',
-  projectId: 'stephen-jelly',
-  storageBucket: 'stephen-jelly.appspot.com',
-  messagingSenderId: '51119085046',
-  appId: '1:51119085046:web:883659cc5cb660fedce3d7',
-  measurementId: 'G-7NV6HKP26M',
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  databaseURL: process.env.databaseURL,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
+  measurementId: process.env.measurementId,
 }
 
 // Initialize Firebase
@@ -30,7 +30,7 @@ export const auth = firebase.auth()
 export const storage = firebase.storage()
 export const imgCol = db.collection('images')
 export const aboutCol = db.collection('about')
-export const calendarCol = db.collection('calender')
+export const calendarCol = db.collection('calendar')
 export const carCol = db.collection('car')
 export const partnerImgCol = db.collection('partner_images')
 export const circuitImgCol = db.collection('circuit_images')

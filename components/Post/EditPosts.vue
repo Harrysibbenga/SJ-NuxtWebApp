@@ -59,7 +59,7 @@
                 {{ post.lastUpdateOn | formatCreation }}
               </td>
               <td v-else>-- -- --</td>
-              <td>
+              <td v-if="type == 'partner'">
                 {{ post.order }}
                 <v-btn class="mx-1" @click.native="increment(post)">
                   <v-icon>mdi-plus</v-icon>
@@ -131,9 +131,9 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import { filter } from '@/mixins/filter'
 import { pagination } from '@/mixins/pagination'
-import _ from 'lodash'
 
 export default {
   mixins: [filter, pagination],

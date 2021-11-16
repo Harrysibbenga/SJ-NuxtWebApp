@@ -13,6 +13,10 @@
       <div class="pt-2">
         <PostImageUpload :image.sync="post.image" :type="type" />
         <PostStandardForm :content.sync="post.content" />
+        <h3>Schedule</h3>
+        <helpers-scheduling
+          :publish-date.sync="post.published"
+        ></helpers-scheduling>
         <PostQuotes :quotes.sync="post.quotes" />
         <PostGallery :gallery.sync="post.gallery" />
         <UiMessage :msg="msg" />
@@ -55,6 +59,7 @@ export default {
           alt: '',
         },
         gallery: [],
+        published: '',
         content: {
           type: 'post',
           title: '',
@@ -78,8 +83,7 @@ export default {
         message: '',
       },
       defaultImg: {
-        url:
-          'https://firebasestorage.googleapis.com/v0/b/jhr-developments-c5bba.appspot.com/o/images%2Fimg-placeholder.png?alt=media&token=7d9c5978-d45d-4049-91d9-ceb235823db7',
+        url: 'https://firebasestorage.googleapis.com/v0/b/jhr-developments-c5bba.appspot.com/o/images%2Fimg-placeholder.png?alt=media&token=7d9c5978-d45d-4049-91d9-ceb235823db7',
         alt: 'Placeholder Image',
       },
       editModal: false,
@@ -104,6 +108,7 @@ export default {
             alt: this.emitedPost.alt,
           },
           gallery: this.emitedPost.gallery,
+          published: this.emitedPost.published,
           content: {
             type: this.emitedPost.type,
             title: this.emitedPost.title,
@@ -144,6 +149,7 @@ export default {
           url: '',
           alt: '',
         },
+        published: '',
         gallery: [],
         content: {
           type: 'post',
@@ -201,6 +207,7 @@ export default {
           alt: this.post.image.alt,
           type: this.post.content.type,
           gallery: this.post.gallery,
+          published: this.post.published,
         })
         .then(() => {
           this.reset()
@@ -315,6 +322,7 @@ export default {
             alt: this.clickedPost.image.alt,
             type: this.clickedPost.content.type,
             gallery: this.clickedPost.gallery,
+            published: this.clickedPost.published,
           })
           .then(() => {
             this.reset()

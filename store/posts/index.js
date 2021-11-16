@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { postsCol, postPg } from '@/services/firebase'
 
 export const state = () => ({
@@ -5,6 +6,7 @@ export const state = () => ({
   post: null,
   postsByYear: [],
   news: {},
+  publishedPosts: [],
 })
 
 export const mutations = {
@@ -20,6 +22,13 @@ export const mutations = {
       state.postsByYear = val
     } else {
       state.postsByYear = []
+    }
+  },
+  setPublishedPosts(state, val) {
+    if (val) {
+      state.publishedPosts = val
+    } else {
+      state.publishedPosts = null
     }
   },
   setPost(state, val) {
@@ -71,13 +80,32 @@ export const actions = {
   setPosts({ commit }) {
     postsCol.orderBy('date', 'desc').onSnapshot((querySnapshot) => {
       const postsArray = []
+      const now = moment().format()
 
       querySnapshot.forEach((doc) => {
         const post = doc.data()
         post.id = doc.id
+        if (!post.published) {
+          postsCol
+            .doc(doc.id)
+            .update({
+              published: now,
+            })
+            .then(function () {
+              console.log('Document successfully updated!')
+            })
+            .catch(function (error) {
+              console.error('Error updating document: ', error)
+            })
+        }
         postsArray.push(post)
       })
+
       commit('setPosts', postsArray)
+      commit(
+        'setPublishedPosts',
+        postsArray.filter((post) => now >= post.published)
+      )
     })
   },
   setPostsByYear({ commit }, year) {
@@ -121,5 +149,8 @@ export const getters = {
   },
   getContent(state) {
     return state.news
+  },
+  getPublishedPosts(state) {
+    return state.publishedPosts
   },
 }

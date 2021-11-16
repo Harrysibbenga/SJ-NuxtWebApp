@@ -19,6 +19,7 @@
         <v-tab :nuxt="true" to="/admin/news"> News </v-tab>
         <v-tab :nuxt="true" to="/admin/partners"> Partners </v-tab>
         <v-tab :nuxt="true" to="/admin/calendar"> Calendar </v-tab>
+        <v-tab :nuxt="true" to="/admin/media"> Media </v-tab>
       </v-tabs>
     </v-container>
 
@@ -27,8 +28,8 @@
 </template>
 
 <script>
-import { auth } from '@/services/firebase'
 import Cookie from 'js-cookie'
+import { auth } from '@/services/firebase'
 
 export default {
   name: 'Admin',

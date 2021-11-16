@@ -9,6 +9,10 @@
       <v-card-text>
         <PostImageUpload :image.sync="post.image" :type="'image'" />
         <PostStandardForm class="mt-5" :content.sync="post.content" />
+        <h3>Schedule</h3>
+        <helpers-scheduling
+          :publish-date.sync="post.published"
+        ></helpers-scheduling>
         <PostQuotes :quotes.sync="post.quotes" />
         <PostGallery :gallery="post.gallery" />
       </v-card-text>
